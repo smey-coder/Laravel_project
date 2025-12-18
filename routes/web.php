@@ -1,24 +1,16 @@
 <?php
 
-use App\Http\Controllers\SumController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\View\View;
-use App\Http\Controllers\StudentController;
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hi', function (): View{
-    return view('hi');
-});
+use App\Http\Controllers\StudentController;
+// Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+// Route::get('/students/create/', [StudentController::class, 'create'])->name('students.create');
+// Route::post('/students', [StudentController::class, 'store'])->name('students.store');
 
-// Route::get('/sum/{a}/{b}', function($a, $b): View{
-//     $total = $a + $b;
-//     return view('sum', compact('total'));
-// });
-
-Route::get('sum/{a}/{b}', [SumController::class, 'calc']);
-Route::get('multi/{a}/{b}', [SumController::class, 'multi']);
-
-Route::get('/students', [StudentController::class, 'index']);
+// Route::get('/students/', [StudentController::class, 'edit'])->name('students.edit');
+// Route::get('/students/', [StudentController::class, 'update'])->name('students.update');
+// Route::get('/students/', [StudentController::class, 'update'])->name('students.update');
+Route::resource('/students', StudentController::class);
